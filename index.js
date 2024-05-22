@@ -1,22 +1,29 @@
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
+const cors = require('cors');
 
-const app = express()
+const app = express();
 
-// Config JSON response
-app.use(express.json())
+// Configuração da porta do servidor
+const PORT = process.env.PORT || 5000;
 
-// Solve CORS
-app.use(cors())
+// Configurar para receber JSON nas requisições
+app.use(express.json());
 
-// Public folder for images
-app.use(express.static('public'))
+// Habilitar o CORS
+app.use(cors());
 
-// Routes
-const PetRoutes = require('./routes/PetRoutes')
-const UserRoutes = require('./routes/UserRoutes')
+// Pasta pública para imagens
+app.use(express.static('public'));
 
-app.use('/pets', PetRoutes)
-app.use('/users', UserRoutes)
+// Rotas
+const PetRoutes = require('./routes/PetRoutes');
+const UserRoutes = require('./routes/UserRoutes');
 
-app.listen(5000)
+app.use('/pets', PetRoutes);
+app.use('/users', UserRoutes);
+
+// Iniciar o servidor na porta determinada
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
+

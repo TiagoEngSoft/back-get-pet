@@ -1,5 +1,8 @@
 {
   "name": "backend",
+  "engines": {
+    "node": "v20.13.1"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

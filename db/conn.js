@@ -3,10 +3,19 @@ const mongoose = require('mongoose');
 
 async function main() {
   const mongoURI = process.env.MONGODB_URI;
-  await mongoose.connect(mongoURI);
-  console.log('Conectou com Mongoose!');
+  try {
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false
+    });
+    console.log('Conectou com Mongoose!');
+  } catch (error) {
+    console.error('Erro ao conectar com Mongoose:', error);
+  }
 }
 
-main().catch((err) => console.error(err));
+main();
 
 module.exports = mongoose;

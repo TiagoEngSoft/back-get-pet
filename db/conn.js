@@ -1,4 +1,7 @@
-require('dotenv').config();
+// Somente para ambiente local
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const mongoose = require('mongoose');
 
 async function main() {
